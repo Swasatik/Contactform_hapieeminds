@@ -1,0 +1,2293 @@
+{%- liquid
+  assign heading_font = section.settings.heading_font_family
+  assign body_font = section.settings.body_font_family
+  assign marquee_font = section.settings.marquee_font_family
+  assign badge_font = section.settings.badge_font_family
+  assign label_font = section.settings.label_font_family
+  assign input_font = section.settings.input_font_family
+  assign btn_font = section.settings.btn_font_family
+  assign wa_font = section.settings.wa_btn_font_family
+-%}
+
+{%- style -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ body_font | font_face: font_display: 'swap' }}
+  {{ marquee_font | font_face: font_display: 'swap' }}
+  {{ badge_font | font_face: font_display: 'swap' }}
+  {{ label_font | font_face: font_display: 'swap' }}
+  {{ input_font | font_face: font_display: 'swap' }}
+  {{ btn_font | font_face: font_display: 'swap' }}
+  {{ wa_font | font_face: font_display: 'swap' }}
+
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  #shopify-section-{{ section.id }} {
+    display: block !important;
+    width: 100% !important;
+    position: relative !important;
+    background-color: {{ section.settings.bg_color | default: '#FAFAFA' }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: {{ section.settings.padding_left }}px;
+    padding-right: {{ section.settings.padding_right }}px;
+    overflow: hidden;
+    font-family: {{ body_font.family }}, 'Inter', sans-serif;
+  }
+
+  .ug-contact-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_width }}px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: {{ section.settings.column_gap }}px;
+    box-sizing: border-box;
+  }
+
+  /* Left Info Column (50% Width) */
+  .ug-contact-left {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: {{ section.settings.left_column_gap }}px;
+    box-sizing: border-box;
+  }
+
+  .ug-contact-left-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Creators Top Trust Badge */
+  .ug-creators-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ug-creators-avatars {
+    display: flex;
+    align-items: center;
+  }
+
+  .ug-creators-avatars img {
+    width: {{ section.settings.badge_avatar_size }}px;
+    height: {{ section.settings.badge_avatar_size }}px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: {{ section.settings.badge_border_width }}px solid {{ section.settings.badge_border_color }};
+    margin-left: -10px;
+  }
+
+  .ug-creators-avatars img:first-child {
+    margin-left: 0;
+  }
+
+  .ug-creators-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ug-creators-stars {
+    color: {{ section.settings.star_color | default: '#F59E0B' }};
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .ug-creators-text {
+    font-family: {{ badge_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.badge_text_size }}px;
+    font-weight: {{ section.settings.badge_text_weight }};
+    color: {{ section.settings.badge_text_color }};
+  }
+
+  /* Main Headings */
+  .ug-contact-heading {
+    font-family: {{ heading_font.family }}, "Anton", "Bebas Neue", "Impact", sans-serif;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    line-height: {{ section.settings.heading_lh }};
+    letter-spacing: {{ section.settings.heading_ls }}px;
+    color: {{ section.settings.heading_color }};
+    text-transform: {{ section.settings.heading_text_transform }};
+    margin: 0;
+  }
+
+  .ug-contact-heading b,
+  .ug-contact-heading u {
+    display: inline-block;
+    background-color: {{ section.settings.highlight_bg }};
+    color: {{ section.settings.highlight_color }};
+    padding: 2px 20px;
+    border-radius: {{ section.settings.highlight_tl }}px {{ section.settings.highlight_tr }}px {{ section.settings.highlight_br }}px {{ section.settings.highlight_bl }}px;
+    text-decoration: none;
+    font-weight: inherit;
+    margin-top: 4px;
+  }
+
+  .ug-heading-desktop {
+    display: block;
+  }
+
+  .ug-heading-mobile {
+    display: none;
+  }
+
+  /* Bottom Logo Marquee Ticker */
+  .ug-contact-brands-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.marquee_title_gap }}px;
+    margin-top: {{ section.settings.marquee_margin_top }}px;
+    width: 100%;
+  }
+
+  .ug-contact-brands-title {
+    font-family: {{ marquee_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.marquee_title_size }}px;
+    font-weight: {{ section.settings.marquee_title_weight }};
+    color: {{ section.settings.marquee_title_color }};
+  }
+
+  .ug-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    padding-top: {{ section.settings.marquee_padding_top }}px;
+    padding-bottom: {{ section.settings.marquee_padding_bottom }}px;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .ug-marquee-track {
+    display: flex;
+    gap: {{ section.settings.marquee_item_gap }}px;
+    width: max-content;
+    animation: scrollMarquee {{ section.settings.marquee_speed }}s linear infinite;
+    align-items: center;
+  }
+
+  .ug-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ug-contact-brand-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ section.settings.marquee_item_bg }};
+    border: 1px solid {{ section.settings.marquee_item_border }};
+    padding: {{ section.settings.marquee_pill_padding_y }}px {{ section.settings.marquee_pill_padding_x }}px;
+    border-radius: {{ section.settings.marquee_pill_radius }}px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .ug-contact-brand-item img {
+    height: {{ section.settings.marquee_logo_height }}px;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Right Form Column (50% Width) */
+  .ug-contact-right {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 50%;
+    background-color: {{ section.settings.form_card_bg }};
+    border-radius: {{ section.settings.form_card_radius }}px;
+    border: {{ section.settings.form_card_border_width }}px solid {{ section.settings.form_card_border_color }};
+    box-shadow: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ug-form-header {
+    background-color: {{ section.settings.header_bg }};
+    color: {{ section.settings.header_color }};
+    padding: {{ section.settings.header_py }}px {{ section.settings.header_px }}px;
+    font-size: {{ section.settings.form_header_font_size }}px;
+    font-weight: {{ section.settings.form_header_font_weight }};
+  }
+
+  .ug-form-body {
+    padding: {{ section.settings.form_padding_y }}px {{ section.settings.form_padding_x }}px;
+  }
+
+  .ug-form-field {
+    margin-bottom: 22px;
+  }
+
+  .ug-form-label {
+    display: block;
+    font-family: {{ label_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.label_font_size }}px;
+    font-weight: {{ section.settings.label_font_weight }};
+    color: {{ section.settings.label_color }};
+    margin-bottom: 8px;
+  }
+
+  .ug-form-input,
+  textarea, 
+  input:not([type='checkbox'], [type='radio']) {
+    width: 100%;
+    font-family: {{ input_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.input_font_size }}px;
+    font-weight: {{ section.settings.input_font_weight }};
+    background-color: rgb(255 250 247);
+    border: {{ section.settings.input_border_width }}px solid {{ section.settings.input_border_color }};
+    border-radius: {{ section.settings.input_radius }}px;
+    padding: {{ section.settings.input_padding_y }}px {{ section.settings.input_padding_x }}px;
+    color: {{ section.settings.input_text_color }};
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .ug-form-select {
+    width: 100%;
+    font-family: {{ input_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.input_font_size }}px;
+    font-weight: {{ section.settings.input_font_weight }};
+    background-color: rgb(255 250 247);
+    border: {{ section.settings.input_border_width }}px solid {{ section.settings.input_border_color }};
+    border-radius: {{ section.settings.input_radius }}px;
+    padding: {{ section.settings.input_padding_y }}px 36px {{ section.settings.input_padding_y }}px {{ section.settings.input_padding_x }}px;
+    color: {{ section.settings.input_text_color }};
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .ug-form-input:hover,
+  .ug-form-select:hover,
+  textarea:hover, 
+  input:not([type='checkbox'], [type='radio']):hover {
+    border: {{ section.settings.input_hover_border_width }}px solid {{ section.settings.input_hover_border_color }};
+    background-color: {{ section.settings.input_hover_bg_color }};
+  }
+
+  .ug-form-select:hover {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .ug-form-input:focus,
+  .ug-form-select:focus,
+  textarea:focus, 
+  input:not([type='checkbox'], [type='radio']):focus {
+    border-color: {{ section.settings.input_focus_border_color }};
+    background-color: {{ section.settings.input_focus_bg_color }};
+  }
+
+  .ug-form-select:focus {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .ug-form-input::placeholder {
+    color: {{ section.settings.input_placeholder_color }};
+    opacity: 1;
+  }
+
+  /* Platform Checkbox Grid & Customizable Selection Pills */
+  .ug-platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .ug-platform-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: {{ input_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.pill_font_size }}px;
+    font-weight: {{ section.settings.pill_font_weight }};
+    background-color: {{ section.settings.pill_bg_color }};
+    border: {{ section.settings.pill_border_width }}px solid {{ section.settings.pill_border_color }};
+    color: {{ section.settings.pill_text_color }};
+    border-radius: {{ section.settings.pill_radius }}px;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+
+  .ug-platform-pill:hover {
+    background-color: {{ section.settings.pill_hover_bg_color }};
+    border: {{ section.settings.pill_border_width }}px solid {{ section.settings.pill_hover_border_color | default: section.settings.pill_border_color }};
+    color: {{ section.settings.pill_hover_text_color | default: section.settings.pill_text_color }};
+  }
+
+  .ug-platform-pill input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: {{ section.settings.pill_circle_size }}px;
+    height: {{ section.settings.pill_circle_size }}px;
+    border: {{ section.settings.pill_circle_border_width }}px solid {{ section.settings.pill_circle_border_color }};
+    border-radius: 50%;
+    background-color: {{ section.settings.pill_circle_bg }};
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ug-platform-pill input[type="checkbox"]:checked {
+    background-color: {{ section.settings.pill_circle_bg }};
+  }
+
+  .ug-platform-pill:has(input:checked) {
+    border: {{ section.settings.pill_active_border_width }}px solid {{ section.settings.pill_active_color }};
+    background-color: {{ section.settings.pill_active_bg_color }};
+    color: {{ section.settings.pill_active_text_color }};
+  }
+
+  .ug-platform-pill:has(input:checked) input[type="checkbox"] {
+    border-color: {{ section.settings.pill_circle_active_color }};
+  }
+
+  .ug-form-submit-btn {
+    width: 100%;
+    font-family: {{ btn_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.btn_font_size }}px;
+    font-weight: {{ section.settings.btn_font_weight }};
+    background-color: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+    border: {{ section.settings.btn_border_width }}px solid {{ section.settings.btn_border_color }};
+    border-radius: {{ section.settings.btn_radius }}px;
+    padding: {{ section.settings.btn_padding_y }}px {{ section.settings.btn_padding_x }}px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .ug-form-submit-btn:hover {
+    background-color: {{ section.settings.btn_hover_bg }};
+    border-color: {{ section.settings.btn_hover_border_color }};
+    color: {{ section.settings.btn_hover_color }};
+  }
+
+  /* WhatsApp Direct Button Styling (Desktop) */
+  .ug-whatsapp-btn {
+    width: 100%;
+    font-family: {{ wa_font.family }}, 'Inter', sans-serif;
+    font-size: {{ section.settings.wa_btn_font_size }}px;
+    font-weight: {{ section.settings.wa_btn_font_weight }};
+    background-color: {{ section.settings.wa_btn_bg }};
+    color: {{ section.settings.wa_btn_color }};
+    border: {{ section.settings.wa_btn_border_width }}px solid {{ section.settings.wa_btn_border_color }};
+    border-radius: {{ section.settings.wa_btn_radius }}px;
+    padding: {{ section.settings.wa_btn_padding_y }}px {{ section.settings.wa_btn_padding_x }}px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .ug-whatsapp-btn:hover {
+    background-color: {{ section.settings.wa_btn_hover_bg }};
+    border-color: {{ section.settings.wa_btn_hover_border_color }};
+    color: {{ section.settings.wa_btn_hover_color }};
+  }
+
+  .ug-whatsapp-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .ug-form-success {
+    background-color: #DEF7EC;
+    color: #03543F;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 990px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      padding-left: {{ section.settings.mobile_padding_left }}px;
+      padding-right: {{ section.settings.mobile_padding_right }}px;
+    }
+
+    .ug-contact-container-{{ section.id }} {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .ug-contact-left {
+      gap: {{ section.settings.mobile_left_column_gap }}px;
+    }
+
+    .ug-contact-left,
+    .ug-contact-right {
+      flex: 0 0 100%;
+      max-width: 100%;
+      width: 100%;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .ug-contact-right {
+      border-radius: {{ section.settings.mobile_form_card_radius }}px;
+    }
+
+    .ug-form-body {
+      padding: {{ section.settings.mobile_form_padding_y }}px {{ section.settings.mobile_form_padding_x }}px;
+    }
+
+    .ug-form-label {
+      font-size: {{ section.settings.mobile_label_font_size }}px;
+    }
+
+    .ug-creators-text {
+      font-size: {{ section.settings.mobile_badge_text_size }}px;
+    }
+
+    .ug-contact-brands-title {
+      font-size: {{ section.settings.mobile_marquee_title_size }}px;
+      font-weight: {{ section.settings.mobile_marquee_title_weight }};
+      color: {{ section.settings.mobile_marquee_title_color }};
+    }
+
+    .ug-contact-brands-wrap {
+      margin-top: {{ section.settings.mobile_marquee_margin_top }}px;
+    }
+
+    /* WhatsApp Button Mobile Overrides */
+    .ug-whatsapp-btn {
+      font-size: {{ section.settings.mobile_wa_btn_font_size }}px;
+      padding: {{ section.settings.mobile_wa_btn_padding_y }}px {{ section.settings.mobile_wa_btn_padding_x }}px;
+      border-radius: {{ section.settings.mobile_wa_btn_radius }}px;
+    }
+
+    .ug-heading-desktop {
+      display: none;
+    }
+
+    .ug-heading-mobile {
+      display: block;
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      font-weight: {{ section.settings.mobile_heading_weight }};
+      line-height: {{ section.settings.mobile_heading_lh }};
+      letter-spacing: {{ section.settings.mobile_heading_ls }}px;
+      text-transform: {{ section.settings.mobile_heading_text_transform }};
+    }
+
+    .ug-heading-mobile b,
+    .ug-heading-mobile u {
+      display: inline-block;
+      background-color: {{ section.settings.mobile_highlight_bg }};
+      color: {{ section.settings.mobile_highlight_color }};
+      padding: 2px 20px;
+      border-radius: {{ section.settings.mobile_highlight_tl }}px {{ section.settings.mobile_highlight_tr }}px {{ section.settings.mobile_highlight_br }}px {{ section.settings.mobile_highlight_bl }}px;
+      text-decoration: none;
+      font-weight: inherit;
+      margin-top: 4px;
+    }
+
+    .ug-platforms-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+{%- endstyle -%}
+
+<section class="ug-contact-section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="ug-contact-container-{{ section.id }}">
+
+    <!-- Left Info Column -->
+    <div class="ug-contact-left">
+      <div class="ug-contact-left-inner">
+        {%- if section.settings.show_creators_badge -%}
+          <div class="ug-creators-badge-wrap">
+            <div class="ug-creators-avatars">
+              {%- for i in (1..4) -%}
+                {%- assign avatar_key = 'avatar_' | append: i -%}
+                {%- if section.settings[avatar_key] != blank -%}
+                  <img src="{{ section.settings[avatar_key] | image_url: width: 120 }}" alt="" loading="lazy">
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <div class="ug-creators-info">
+              <div class="ug-creators-stars">★★★★★</div>
+              <div class="ug-creators-text">{{ section.settings.creators_badge_text }}</div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <!-- Main Heading -->
+        <h2 class="ug-contact-heading">
+          <span class="ug-heading-desktop">
+            {{ section.settings.heading_text }}
+          </span>
+          <span class="ug-heading-mobile">
+            {{ section.settings.mobile_heading_text }}
+          </span>
+        </h2>
+      </div>
+
+      <!-- Bottom Logo Marquee Ticker -->
+      {%- if section.blocks.size > 0 -%}
+        <div class="ug-contact-brands-wrap">
+          <div class="ug-contact-brands-title">{{ section.settings.brands_title }}</div>
+          <div class="ug-marquee-wrapper">
+            <div class="ug-marquee-track">
+              {%- for loop_idx in (1..2) -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.logo != blank -%}
+                    <div class="ug-contact-brand-item" {{ block.shopify_attributes }}>
+                      <img src="{{ block.settings.logo | image_url: width: 400 }}" alt="" loading="lazy">
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Right Form Column -->
+    <div class="ug-contact-right">
+      <div class="ug-form-header">
+        {{ section.settings.form_header_title }}
+      </div>
+
+      <div class="ug-form-body">
+        {%- form 'contact', id: 'ContactForm' -%}
+          <input type="hidden" name="form_type" value="contact">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" id="ContactForm-platforms" name="contact[Active Platforms]" value="">
+
+          {%- if form.posted_successfully? -%}
+            <div class="ug-form-success" tabindex="-1">
+              {{ section.settings.form_success_message }}
+            </div>
+          {%- elsif form.errors -%}
+            <div style="color: #DC2626; margin-bottom: 16px; font-size: 14px;">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <!-- Full Name -->
+          <div class="ug-form-field">
+            <label class="ug-form-label" for="ContactForm-name">{{ section.settings.field_name_label }}</label>
+            <input class="ug-form-input" type="text" id="ContactForm-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ section.settings.field_name_placeholder }}" required>
+          </div>
+
+          <!-- Email Address -->
+          <div class="ug-form-field">
+            <label class="ug-form-label" for="ContactForm-email">{{ section.settings.field_email_label }}</label>
+            <input class="ug-form-input" type="email" id="ContactForm-email" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="{{ section.settings.field_email_placeholder }}" required>
+          </div>
+
+          <!-- Optional Mobile Number Field -->
+          {%- if section.settings.show_phone_field -%}
+            <div class="ug-form-field">
+              <label class="ug-form-label" for="ContactForm-phone">{{ section.settings.field_phone_label }}</label>
+              <input class="ug-form-input" type="tel" id="ContactForm-phone" name="contact[phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.field_phone_placeholder }}">
+            </div>
+          {%- endif -%}
+
+          <!-- Platforms Active On (3-Across Grid) -->
+          <div class="ug-form-field">
+            <label class="ug-form-label">{{ section.settings.field_platforms_label }}</label>
+            <div class="ug-platforms-grid">
+              {%- assign platforms = 'Instagram,LinkedIn,Other' | split: ',' -%}
+              {%- for platform in platforms -%}
+                <label class="ug-platform-pill">
+                  <input type="checkbox" class="platform-checkbox" value="{{ platform }}">
+                  {{ platform }}
+                </label>
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <!-- Budget Range -->
+          <div class="ug-form-field">
+            <label class="ug-form-label" for="ContactForm-budget">{{ section.settings.field_budget_label }}</label>
+            <select class="ug-form-select" id="ContactForm-budget" name="contact[budget]">
+              <option value="" disabled selected>{{ section.settings.field_budget_placeholder }}</option>
+              <option value="Under $200">Under $200</option>
+              <option value="$200 - $1,000">$200 - $1,000</option>
+              <option value="$1,000 - $3,000">$1,000 - $3,000</option>
+              <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+              <option value="$5,000+">$5,000+</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="ug-form-submit-btn">
+            {{ section.settings.submit_button_text }}
+          </button>
+
+          <!-- WhatsApp Direct Button -->
+          {%- if section.settings.show_whatsapp_btn -%}
+            {%- liquid
+              assign wa_number = section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+              assign wa_msg = section.settings.whatsapp_message | url_encode
+              assign wa_url = 'https://wa.me/' | append: wa_number | append: '?text=' | append: wa_msg
+            -%}
+            <a href="{{ wa_url }}" target="_blank" rel="noopener" class="ug-whatsapp-btn">
+              <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22.05l5.35-1.4c1.42.77 3.03 1.18 4.64 1.18 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01-1.87-1.87-4.36-2.9-7.01-2.9zm0 1.83c2.19 0 4.25.85 5.8 2.4 1.55 1.55 2.4 3.61 2.4 5.8 0 4.53-3.69 8.22-8.22 8.22-1.44 0-2.85-.38-4.09-1.11l-.29-.17-3.04.8.81-2.96-.19-.31c-.78-1.28-1.19-2.77-1.19-4.29 0-4.53 3.69-8.22 8.22-8.22zm4.5 9.87c-.25-.13-1.48-.73-1.71-.82-.23-.09-.39-.13-.56.13-.17.25-.65.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.15-.25-.02-.38.11-.51.11-.11.25-.3.37-.45.12-.15.16-.25.24-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.45.06-.69.32s-.92.9-.92 2.2c0 1.3 1 2.55 1.14 2.73.14.18 1.97 3.01 4.77 4.22.67.29 1.19.46 1.6.6.67.22 1.28.19 1.76.12.54-.08 1.48-.6 1.69-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+              {{ section.settings.whatsapp_btn_text }}
+            </a>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('#ContactForm');
+    if (form) {
+      form.addEventListener('submit', function () {
+        const checkboxes = form.querySelectorAll('.platform-checkbox:checked');
+        const selectedPlatforms = Array.from(checkboxes).map(cb => cb.value).join(', ');
+        const hiddenInput = form.querySelector('#ContactForm-platforms');
+        if (hiddenInput) {
+          hiddenInput.value = selectedPlatforms || 'None selected';
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "UG Contact Form Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Creators Badge Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_creators_badge",
+      "label": "Show Creators Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "creators_badge_text",
+      "label": "Badge Text",
+      "default": "Grown over 120+ creators"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Rating Color",
+      "default": "#F59E0B"
+    },
+    {
+      "type": "font_picker",
+      "id": "badge_font_family",
+      "label": "Badge Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "badge_text_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_badge_text_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size (Mobile)",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "badge_text_weight",
+      "label": "Badge Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "badge_avatar_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Avatar Image Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "badge_border_width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "label": "Avatar Border Width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "badge_border_color",
+      "label": "Avatar Border Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_1",
+      "label": "Avatar 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_2",
+      "label": "Avatar 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_3",
+      "label": "Avatar 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_4",
+      "label": "Avatar 4"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings (Desktop)"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Desktop Heading Text",
+      "default": "LET'S BUILD<br>SOMETHING<br><b>GREAT.</b>",
+      "info": "Use <br> for line breaks and wrap any word in <b>...</b> or <u>...</u> for the pink highlight box."
+    },
+    {
+      "type": "color",
+      "id": "highlight_bg",
+      "label": "Highlight Background Color",
+      "default": "#FF69B4"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Highlight Box Corner Radii"
+    },
+    {
+      "type": "range",
+      "id": "highlight_tl",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top-Left Radius",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "highlight_tr",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top-Right Radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "highlight_br",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom-Right Radius",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "highlight_bl",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom-Left Radius",
+      "default": 30
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font_family",
+      "label": "Heading Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 32,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size (Desktop)",
+      "default": 56
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "range",
+      "id": "heading_lh",
+      "min": 0.8,
+      "max": 1.4,
+      "step": 0.1,
+      "unit": "em",
+      "label": "Line Height",
+      "default": 1.1
+    },
+    {
+      "type": "range",
+      "id": "heading_ls",
+      "min": -3,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": -1
+    },
+    {
+      "type": "select",
+      "id": "heading_text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings (Mobile)"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_heading_text",
+      "label": "Mobile Heading Text",
+      "default": "LET'S BUILD<br>SOMETHING <b>GREAT.</b>",
+      "info": "Use <br> for line breaks and wrap any word in <b>...</b> or <u>...</u> for the pink highlight box."
+    },
+    {
+      "type": "color",
+      "id": "mobile_highlight_bg",
+      "label": "Mobile Highlight Background",
+      "default": "#FF69B4"
+    },
+    {
+      "type": "color",
+      "id": "mobile_highlight_color",
+      "label": "Mobile Highlight Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Highlight Box Corner Radii (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_highlight_tl",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Top-Left Radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_highlight_tr",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Top-Right Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_highlight_br",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Bottom-Right Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_highlight_bl",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Bottom-Left Radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "mobile_heading_weight",
+      "label": "Heading Font Weight (Mobile)",
+      "options": [
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_lh",
+      "min": 0.8,
+      "max": 1.4,
+      "step": 0.1,
+      "unit": "em",
+      "label": "Line Height (Mobile)",
+      "default": 1.1
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_ls",
+      "min": -3,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Letter Spacing (Mobile)",
+      "default": -1
+    },
+    {
+      "type": "select",
+      "id": "mobile_heading_text_transform",
+      "label": "Text Transform (Mobile)",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Footer Logo Marquee Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "marquee_font_family",
+      "label": "Marquee Title Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "brands_title",
+      "label": "Marquee Title",
+      "default": "Trusted by 120+ creators and brands"
+    },
+    {
+      "type": "range",
+      "id": "marquee_title_size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Marquee Title Font Size (Desktop)",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_marquee_title_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Marquee Title Font Size (Mobile)",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "marquee_title_weight",
+      "label": "Marquee Title Font Weight (Desktop)",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "mobile_marquee_title_weight",
+      "label": "Marquee Title Font Weight (Mobile)",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "marquee_title_color",
+      "label": "Marquee Title Color (Desktop)",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "mobile_marquee_title_color",
+      "label": "Marquee Title Color (Mobile)",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "marquee_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Marquee Top Margin (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_marquee_margin_top",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Marquee Top Margin (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "marquee_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Marquee Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marquee_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Marquee Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marquee_title_gap",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Space Below Title Text",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "s",
+      "label": "Marquee Speed (Lower is faster)",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "marquee_item_gap",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Space Between Logos",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "marquee_logo_height",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Image Height",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "marquee_pill_padding_y",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Pill Vertical Padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "marquee_pill_padding_x",
+      "min": 8,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Pill Horizontal Padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "marquee_pill_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Pill Border Radius",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "marquee_item_bg",
+      "label": "Logo Pill Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "marquee_item_border",
+      "label": "Logo Pill Border Color",
+      "default": "#E5E7EB"
+    },
+    {
+      "type": "header",
+      "content": "Form Card Settings"
+    },
+    {
+      "type": "text",
+      "id": "form_header_title",
+      "label": "Form Header Title",
+      "default": "Share your details with us."
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Form Header Background",
+      "default": "#8B5CF6"
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Form Header Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "form_header_font_size",
+      "min": 14,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Header Font Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "form_header_font_weight",
+      "label": "Form Header Font Weight",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "header_py",
+      "min": 12,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Header Vertical Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "header_px",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Header Horizontal Padding",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "form_card_bg",
+      "label": "Form Card Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "form_card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_form_card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "form_card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "form_card_border_color",
+      "label": "Card Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "form_padding_y",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Form Body Vertical Padding (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "form_padding_x",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Form Body Horizontal Padding (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_form_padding_y",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Form Body Vertical Padding (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_form_padding_x",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Form Body Horizontal Padding (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Form Fields & Labels"
+    },
+    {
+      "type": "text",
+      "id": "field_name_label",
+      "label": "Name Label",
+      "default": "Full name*"
+    },
+    {
+      "type": "text",
+      "id": "field_name_placeholder",
+      "label": "Name Placeholder",
+      "default": "Enter your full name"
+    },
+    {
+      "type": "text",
+      "id": "field_email_label",
+      "label": "Email Label",
+      "default": "Email address*"
+    },
+    {
+      "type": "text",
+      "id": "field_email_placeholder",
+      "label": "Email Placeholder",
+      "default": "hello@yourbrand.com"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone_field",
+      "label": "Show Phone Number Field",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "field_phone_label",
+      "label": "Phone Label",
+      "default": "Phone number"
+    },
+    {
+      "type": "text",
+      "id": "field_phone_placeholder",
+      "label": "Phone Placeholder",
+      "default": "+1 (555) 000-0000"
+    },
+    {
+      "type": "text",
+      "id": "field_platforms_label",
+      "label": "Platforms Label",
+      "default": "Which platforms are you active on?"
+    },
+    {
+      "type": "text",
+      "id": "field_budget_label",
+      "label": "Budget Label",
+      "default": "Budget range"
+    },
+    {
+      "type": "text",
+      "id": "field_budget_placeholder",
+      "label": "Budget Placeholder",
+      "default": "Select budget range"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Text",
+      "default": "Send message"
+    },
+    {
+      "type": "header",
+      "content": "WhatsApp Button Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_whatsapp_btn",
+      "label": "Show WhatsApp Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_btn_text",
+      "label": "WhatsApp Button Text",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp Phone Number",
+      "default": "1234567890",
+      "info": "Include country code without + or dashes (e.g. 919876543210 for India)"
+    },
+    {
+      "type": "textarea",
+      "id": "whatsapp_message",
+      "label": "Pre-filled WhatsApp Message",
+      "default": "Hi, I'd like to get in touch!"
+    },
+    {
+      "type": "font_picker",
+      "id": "wa_btn_font_family",
+      "label": "WhatsApp Button Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "wa_btn_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "WhatsApp Button Font Size (Desktop)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_wa_btn_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "WhatsApp Button Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "wa_btn_font_weight",
+      "label": "WhatsApp Button Font Weight",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "wa_btn_padding_y",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_wa_btn_padding_y",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "wa_btn_padding_x",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_wa_btn_padding_x",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "wa_btn_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius (Desktop)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_wa_btn_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "wa_btn_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_border_color",
+      "label": "Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_bg",
+      "label": "Background Color",
+      "default": "#25D366"
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_hover_bg",
+      "label": "Hover Background Color",
+      "default": "#22BF5B"
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_hover_border_color",
+      "label": "Hover Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "wa_btn_hover_color",
+      "label": "Hover Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Form Labels Typography & Color"
+    },
+    {
+      "type": "font_picker",
+      "id": "label_font_family",
+      "label": "Label Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Font Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_label_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "Label Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "Form Inputs Typography & Color"
+    },
+    {
+      "type": "font_picker",
+      "id": "input_font_family",
+      "label": "Input Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Input Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "input_font_weight",
+      "label": "Input Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "input_padding_y",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Input Vertical Padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_padding_x",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Input Horizontal Padding",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "input_placeholder_color",
+      "label": "Placeholder Text Color",
+      "default": "#9CA3AF"
+    },
+    {
+      "type": "color",
+      "id": "input_bg_color",
+      "label": "Input Background Color",
+      "default": "#FFFAF7"
+    },
+    {
+      "type": "range",
+      "id": "input_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Input Border Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "input_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Input Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "input_hover_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Input Hover Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "input_hover_border_color",
+      "label": "Input Hover Border Color",
+      "default": "#8B5CF6"
+    },
+    {
+      "type": "color",
+      "id": "input_hover_bg_color",
+      "label": "Input Hover Background Color",
+      "default": "#FFF5EE"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Input Focus Border Color",
+      "default": "#8B5CF6"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_bg_color",
+      "label": "Input Focus Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Platform Pills Styling & Colors"
+    },
+    {
+      "type": "color",
+      "id": "pill_bg_color",
+      "label": "Pill Background Color",
+      "default": "#F8F9FA"
+    },
+    {
+      "type": "color",
+      "id": "pill_border_color",
+      "label": "Pill Border Color",
+      "default": "#E5E7EB"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Pill Text Color",
+      "default": "#374151"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_bg_color",
+      "label": "Pill Hover Background Color",
+      "default": "#F3F4F6"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_bg_color",
+      "label": "Active Pill Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_text_color",
+      "label": "Active Pill Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_color",
+      "label": "Active Pill Border Color",
+      "default": "#FF5722"
+    },
+    {
+      "type": "range",
+      "id": "pill_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Pill Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "pill_active_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Active Pill Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "pill_circle_bg",
+      "label": "Selection Circle Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "pill_circle_border_color",
+      "label": "Selection Circle Border Color",
+      "default": "#D1D5DB"
+    },
+    {
+      "type": "color",
+      "id": "pill_circle_active_color",
+      "label": "Selection Circle Active Border Color",
+      "default": "#FF5722"
+    },
+    {
+      "type": "range",
+      "id": "pill_circle_size",
+      "min": 14,
+      "max": 26,
+      "step": 2,
+      "unit": "px",
+      "label": "Selection Circle Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "pill_circle_border_width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Selection Circle Border Width",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "pill_font_size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Pill Font Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "pill_font_weight",
+      "label": "Pill Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "pill_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Pill Border Radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Submit Button Typography & Colors"
+    },
+    {
+      "type": "font_picker",
+      "id": "btn_font_family",
+      "label": "Button Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "btn_font_weight",
+      "label": "Button Font Weight",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_y",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "btn_padding_x",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "btn_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "btn_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "btn_border_color",
+      "label": "Button Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button Background Color",
+      "default": "#9CA3AF"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_border_color",
+      "label": "Button Hover Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_color",
+      "label": "Button Hover Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "textarea",
+      "id": "form_success_message",
+      "label": "Success Message",
+      "default": "Thanks for contacting us. We'll get back to you soon."
+    },
+    {
+      "type": "header",
+      "content": "Container Border & Padding Space"
+    },
+    {
+      "type": "color",
+      "id": "container_bg",
+      "label": "Container Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "container_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Container Border Radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "container_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Container Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "container_border_color",
+      "label": "Container Border Color",
+      "default": "#E5E7EB"
+    },
+    {
+      "type": "range",
+      "id": "container_padding_y",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Container Inner Vertical Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "container_padding_x",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Container Inner Horizontal Padding",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing & Layout"
+    },
+    {
+      "type": "range",
+      "id": "left_column_gap",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Column Content Gap (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_left_column_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Column Content Gap (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Columns",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Left (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Right (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Left (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Right (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#FAFAFA"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1320
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Marquee Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UG Contact Form Section",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}
